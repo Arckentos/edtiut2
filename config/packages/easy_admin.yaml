@@ -1,0 +1,31 @@
+easy_admin:
+  formats:
+    date: "d/m/Y"
+    time: "H:i"
+    datetime: "d/m/Y H:i"
+  entities:
+    # List the entity class name you want to manage
+    Professeur:
+      class: App\Entity\Professeur
+    Matiere:
+      class: App\Entity\Matiere
+    Avis:
+      class: App\Entity\Avis
+    Salle:
+      class: App\Entity\Salle
+    Cours:
+      class: App\Entity\Cours
+      form:
+        fields:
+          - matiere
+          - date
+          - dateHeureDebut
+          - dateHeureFin
+          - professeur
+          - salle
+          - {
+              property: "type",
+              type: "choice",
+              type_options:
+                { choices: { "Cours": "Cours", "TD": "TD", "TP": "TP" } },
+            }
