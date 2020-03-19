@@ -71,7 +71,7 @@ class Cours
 
     public function __construct()
     {
-        $this->date = new \DateTime();    
+        $this->date = new \DateTime();
         $this->dateHeureDebut = new \DateTime();
         $this->dateHeureFin = new \DateTime();
     }
@@ -89,13 +89,13 @@ class Cours
             'dateHeureDebut' => $this->getDateHeureDebut(),
             'dateHeureFin' => $this->getDateHeureFin(),
             'type' => $this->getType(),
-            'professeur' =>array_map(function($professeur){
+            'professeur' => array_map(function ($professeur) {
                 return $professeur;
             }, $this->getProfesseur()->toArray()),
-            'matiere' =>array_map(function($matiere){
+            'matiere' => array_map(function ($matiere) {
                 return $matiere;
             }, $this->getMatiere()->toArray()),
-            'salle' =>array_map(function($salle){
+            'salle' => array_map(function ($salle) {
                 return $salle;
             }, $this->getSalle()->toArray())
         ];
@@ -111,22 +111,26 @@ class Cours
         return $this->date;
     }
 
-    public function setDate(\DateTime $date): self
+    public function setDate($date): self
     {
+        $date = date_create_from_format('Y-m-d', $date);
+        // $date->getTimestamp();
         $this->date = $date;
 
         return $this;
     }
 
-    public function getDateHeureDebut() 
+    public function getDateHeureDebut()
     {
         return $this->dateHeureDebut;
     }
 
-    public function setDateHeureDebut( $dateHeureDebut): self
+    public function setDateHeureDebut($dateHeureDebut): self
     {
+        $dateHeureDebut = date_create_from_format('H:i', $dateHeureDebut);
+        // $dateHeureDebut->getTimestamp();
         $this->dateHeureDebut = $dateHeureDebut;
-
+        
         return $this;
     }
 
@@ -135,8 +139,10 @@ class Cours
         return $this->dateHeureFin;
     }
 
-    public function setDateHeureFin(\DateTime $dateHeureFin): self
+    public function setDateHeureFin($dateHeureFin): self
     {
+        $dateHeureFin = date_create_from_format('H:i', $dateHeureFin);
+        // $dateHeureFin->getTimestamp();
         $this->dateHeureFin = $dateHeureFin;
 
         return $this;
@@ -155,7 +161,7 @@ class Cours
     }
 
 
-    
+
 
     public function getSalle(): ?Salle
     {

@@ -19,6 +19,11 @@ class SalleRepository extends ServiceEntityRepository
         parent::__construct($registry, Salle::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('numero' => 'ASC'));
+    }
+
     // /**
     //  * @return Salle[] Returns an array of Salle objects
     //  */

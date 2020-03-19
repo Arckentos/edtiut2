@@ -11,7 +11,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 '/cours/{id}/delete',
             ],
             'name' => [
-                'api_delete__cours',
+                'api_delete_cours',
             ],
             'methods' => [
                 [

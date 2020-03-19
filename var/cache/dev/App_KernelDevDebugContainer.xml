@@ -301,6 +301,13 @@
         <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Api\ProfesseurController"/>
       </call>
     </service>
+    <service id="App\Controller\Api\SalleController" class="App\Controller\Api\SalleController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Api\SalleController"/>
+      </call>
+    </service>
     <service id="App\Controller\ProfesseurController" class="App\Controller\ProfesseurController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -309,6 +316,9 @@
       </call>
     </service>
     <service id="App\Form\AvisType" class="App\Form\AvisType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\CoursType" class="App\Form\CoursType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\ProfesseurType" class="App\Form\ProfesseurType" autowire="true" autoconfigure="true">
@@ -719,6 +729,7 @@
       </argument>
       <argument type="collection">
         <argument>App\Form\AvisType</argument>
+        <argument>App\Form\CoursType</argument>
         <argument>App\Form\ProfesseurType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -1081,7 +1092,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.DKzzW9y"/>
+      <argument type="service" id=".service_locator.YZOuG.Q"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4277,11 +4288,16 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Api\ProfesseurController" class="App\Controller\Api\ProfesseurController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Api\ProfesseurController" class="App\Controller\Api\ProfesseurController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Api\ProfesseurController" class="App\Controller\Api\ProfesseurController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Api\SalleController" class="App\Controller\Api\SalleController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Api\SalleController" class="App\Controller\Api\SalleController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Api\SalleController" class="App\Controller\Api\SalleController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ProfesseurController" class="App\Controller\ProfesseurController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ProfesseurController" class="App\Controller\ProfesseurController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ProfesseurController" class="App\Controller\ProfesseurController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\AvisType" class="App\Form\AvisType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\AvisType" class="App\Form\AvisType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CoursType" class="App\Form\CoursType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\CoursType" class="App\Form\CoursType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ProfesseurType" class="App\Form\ProfesseurType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ProfesseurType" class="App\Form\ProfesseurType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AvisRepository" class="App\Repository\AvisRepository" autowire="true" abstract="true"/>
@@ -4536,6 +4552,19 @@
         <argument key="em" type="service" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
+    <service id=".service_locator.LydtOKj" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="uneSalle" type="service" id=".errored..service_locator.LydtOKj.App\Entity\Salle"/>
+      </argument>
+    </service>
+    <service id=".service_locator.3GZAXQu" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="em" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="uneSalle" type="service" id=".errored..service_locator.3GZAXQu.App\Entity\Salle"/>
+      </argument>
+    </service>
     <service id=".service_locator.MEkRFnv" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4543,11 +4572,12 @@
         <argument key="professeur" type="service" id=".errored..service_locator.MEkRFnv.App\Entity\Professeur"/>
       </argument>
     </service>
-    <service id=".service_locator.Aci1ks7" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.u8LtxW8" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Api\CoursController::createCours" type="service" id=".service_locator._CDY2gJ"/>
         <argument key="App\Controller\Api\CoursController::deleteCours" type="service" id=".service_locator.L9EVYYQ"/>
+        <argument key="App\Controller\Api\CoursController::editUnCours" type="service" id=".service_locator.L9EVYYQ"/>
         <argument key="App\Controller\Api\CoursController::getCours" type="service" id=".service_locator._CDY2gJ"/>
         <argument key="App\Controller\Api\CoursController::getUnCours" type="service" id=".service_locator.CBdC_sR"/>
         <argument key="App\Controller\Api\ProfesseurController::deleteAvis" type="service" id=".service_locator.Sf.RFGb"/>
@@ -4557,6 +4587,10 @@
         <argument key="App\Controller\Api\ProfesseurController::getProfesseurCours" type="service" id=".service_locator.KqZSwLy"/>
         <argument key="App\Controller\Api\ProfesseurController::getProfesseurs" type="service" id=".service_locator._CDY2gJ"/>
         <argument key="App\Controller\Api\ProfesseurController::putProfesseurAvis" type="service" id=".service_locator.AXZ0CZ."/>
+        <argument key="App\Controller\Api\SalleController::createSalle" type="service" id=".service_locator._CDY2gJ"/>
+        <argument key="App\Controller\Api\SalleController::deleteSalle" type="service" id=".service_locator.3GZAXQu"/>
+        <argument key="App\Controller\Api\SalleController::getCours" type="service" id=".service_locator._CDY2gJ"/>
+        <argument key="App\Controller\Api\SalleController::getUneSalle" type="service" id=".service_locator.LydtOKj"/>
         <argument key="App\Controller\ProfesseurController::create" type="service" id=".service_locator._CDY2gJ"/>
         <argument key="App\Controller\ProfesseurController::delete" type="service" id=".service_locator.MEkRFnv"/>
         <argument key="App\Controller\ProfesseurController::edit" type="service" id=".service_locator._CDY2gJ"/>
@@ -4621,10 +4655,11 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.DKzzW9y" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.YZOuG.Q" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\AvisType" type="service" id="App\Form\AvisType"/>
+        <argument key="App\Form\CoursType" type="service" id="App\Form\CoursType"/>
         <argument key="App\Form\ProfesseurType" type="service" id="App\Form\ProfesseurType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType" type="service" id="easyadmin.form.type.autocomplete"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminBatchFormType" type="service" id="easyadmin.form.type.batch"/>
@@ -4714,6 +4749,12 @@
     <service id=".service_locator.pNNo5z3.App\Controller\Api\ProfesseurController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\Api\ProfesseurController"/>
       <argument>App\Controller\Api\ProfesseurController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\Api\SalleController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Api\SalleController"/>
+      <argument>App\Controller\Api\SalleController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.pNNo5z3" method="withContext"/>
     </service>
@@ -4871,18 +4912,20 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.Aci1ks7"/>
+      <argument type="service" id=".service_locator.u8LtxW8"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.Aci1ks7"/>
+      <argument type="service" id=".service_locator.u8LtxW8"/>
     </service>
     <service id=".errored..service_locator.CBdC_sR.App\Entity\Cours" class="App\Entity\Cours"/>
     <service id=".errored..service_locator.L9EVYYQ.App\Entity\Cours" class="App\Entity\Cours"/>
     <service id=".errored..service_locator.KqZSwLy.App\Entity\Professeur" class="App\Entity\Professeur"/>
     <service id=".errored..service_locator.AXZ0CZ..App\Entity\Professeur" class="App\Entity\Professeur"/>
     <service id=".errored..service_locator.Sf.RFGb.App\Entity\Avis" class="App\Entity\Avis"/>
+    <service id=".errored..service_locator.LydtOKj.App\Entity\Salle" class="App\Entity\Salle"/>
+    <service id=".errored..service_locator.3GZAXQu.App\Entity\Salle" class="App\Entity\Salle"/>
     <service id=".errored..service_locator.MEkRFnv.App\Entity\Professeur" class="App\Entity\Professeur"/>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <argument type="service" id=".service_locator..tjHCkh"/>
@@ -5180,7 +5223,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Form\Filter\FilterRegistry" alias="easyadmin.filter.registry" public="true"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.Aci1ks7"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.u8LtxW8"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface" alias="logger" public="false"/>
     <service id=".service_locator.tHpW6v3" alias=".service_locator.Y7gDuDN" public="false"/>
