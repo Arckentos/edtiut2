@@ -23,7 +23,6 @@ class SalleController extends AbstractController
      */
     public function getSalles(EntityManagerInterface $em)
     {
-        // Commun
         $salles = $em->getRepository(Salle::class)->findAll();
 
         // Méthode 3

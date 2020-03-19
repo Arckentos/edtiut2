@@ -179,7 +179,7 @@ class Matiere extends \App\Entity\Matiere implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function __toString()
+    public function __toString(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', []);

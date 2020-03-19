@@ -12,7 +12,7 @@ return [
         '/api/cours/create' => [[['_route' => 'api_put_cours', '_controller' => 'App\\Controller\\Api\\CoursController::createCours'], null, ['PUT' => 0], null, false, false, null]],
         '/api/professeurs' => [[['_route' => 'api_professeurs', '_controller' => 'App\\Controller\\Api\\ProfesseurController::getProfesseurs'], null, null, null, false, false, null]],
         '/api/matieres' => [[['_route' => 'api_matieres', '_controller' => 'App\\Controller\\Api\\ProfesseurController::getMatieres'], null, null, null, false, false, null]],
-        '/api/salles' => [[['_route' => 'api_salles', '_controller' => 'App\\Controller\\Api\\SalleController::getCours'], null, null, null, false, false, null]],
+        '/api/salles' => [[['_route' => 'api_salles', '_controller' => 'App\\Controller\\Api\\SalleController::getSalles'], null, null, null, false, false, null]],
         '/professeurs' => [[['_route' => 'professeurs', '_controller' => 'App\\Controller\\ProfesseurController::index'], null, null, null, true, false, null]],
         '/professeurs/create' => [[['_route' => 'professeurs.create', '_controller' => 'App\\Controller\\ProfesseurController::create'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/admin' => [[['_route' => 'easyadmin', '_controller' => 'EasyCorp\\Bundle\\EasyAdminBundle\\Controller\\EasyAdminController::indexAction'], null, null, null, true, false, null]],

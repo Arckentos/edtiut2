@@ -3,7 +3,9 @@
 namespace App\Controller\Api;
 
 use App\Entity\Avis;
+use App\Entity\Salle;
 use App\Entity\Professeur;
+use App\Entity\Matiere;
 use App\Entity\Cours;
 use App\Form\CoursType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -40,18 +42,18 @@ class CoursController extends AbstractController
     {
         $data = json_decode($request->getContent());
         
-        // try {
+        try {
             $unCours = new Cours;
             $unCours->setDate($data->date)
                 ->setDateHeureDebut($data->dateHeureDebut)
                 ->setDateHeureFin($data->dateHeureFin)
                 ->setType($data->type)
-                ->setSalle($data->salle)
-                ->setProfesseur($data->professeur)
-                ->setMatiere($data->matiere);
-        // } catch (\Exception $e) {
-        //     return $this->json(['message' => 'Erreur creation cours.'], 400);
-        // }
+                ->setSalle(new Salle($data->salle))
+                ->setProfesseur(new Professeur($data->professeur))
+                ->setMatiere(new Matiere($data->matiere));
+        } catch (\Exception $e) {
+            return $this->json(['message' => 'Erreur creation cours.'], 400);
+        }
 
         // // $errors = $validator->validate($unCours);
         // // if (count($errors) > 0) {

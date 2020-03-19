@@ -16,7 +16,7 @@ return [
     'api_put_professeurs_avis' => [['id'], ['_controller' => 'App\\Controller\\Api\\ProfesseurController::putProfesseurAvis'], [], [['text', '/avis'], ['variable', '/', '[^/]++', 'id', true], ['text', '/api/professeurs']], [], []],
     'api_delete_professeurs_avis' => [['id'], ['_controller' => 'App\\Controller\\Api\\ProfesseurController::deleteAvis'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/avis']], [], []],
     'api_matieres' => [[], ['_controller' => 'App\\Controller\\Api\\ProfesseurController::getMatieres'], [], [['text', '/api/matieres']], [], []],
-    'api_salles' => [[], ['_controller' => 'App\\Controller\\Api\\SalleController::getCours'], [], [['text', '/api/salles']], [], []],
+    'api_salles' => [[], ['_controller' => 'App\\Controller\\Api\\SalleController::getSalles'], [], [['text', '/api/salles']], [], []],
     'api_salles_id' => [['id'], ['_controller' => 'App\\Controller\\Api\\SalleController::getUneSalle'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/salles']], [], []],
     'api_delete_salles' => [['id'], ['_controller' => 'App\\Controller\\Api\\SalleController::deleteSalle'], [], [['text', '/delete'], ['variable', '/', '[^/]++', 'id', true], ['text', '/api/salles']], [], []],
     'api_put_salles' => [[], ['_controller' => 'App\\Controller\\Api\\SalleController::createSalle'], [], [['text', '/api/salles/create']], [], []],

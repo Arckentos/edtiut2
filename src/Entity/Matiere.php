@@ -50,9 +50,9 @@ class Matiere
         $this->cours = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): ?string
     {
-        return $this->titre;
+        return $this->titre . '';
     }
 
     public function toArray()
@@ -76,6 +76,9 @@ class Matiere
     }
 
     public function setTitre($titre){
+        if(!isset($titre)){
+            $this->titre = '';
+        } else
         $this->titre = $titre;
     }
 

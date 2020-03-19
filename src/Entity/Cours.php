@@ -51,19 +51,19 @@ class Cours
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Salle", inversedBy="cours")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Salle", inversedBy="cours", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $salle;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Professeur", inversedBy="cours")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Professeur", inversedBy="cours", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $professeur;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Matiere", inversedBy="cours")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Matiere", inversedBy="cours", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $matiere;
